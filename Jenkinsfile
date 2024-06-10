@@ -18,7 +18,8 @@ pipeline {
             steps {
                 // Install the specified Go version
                 sh '''
-                    go version 
+                which go  
+                    //go version 
                 '''
             }
         }
