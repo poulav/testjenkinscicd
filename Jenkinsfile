@@ -4,7 +4,7 @@ pipeline {
     environment {
         GO_VERSION = '1.20'
         GO_BINARY = 'hostname-app'
-        PATH = '/opt/homebrew/go/bin:$PATH'
+        PATH+EXTRA = '/opt/homebrew/go/bin'
     }
 
     stages {
