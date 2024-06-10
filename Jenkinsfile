@@ -18,11 +18,12 @@ pipeline {
             steps {
                 // Install the specified Go version
                 sh '''
-                    if ! command -v go &> /dev/null; then
-                        curl -OL https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz
-                        tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
-                        export PATH=$PATH:/usr/local/go/bin
-                    fi
+                    // if ! command -v go &> /dev/null; then
+                    //     curl -OL https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz
+                    //     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+                    //     export PATH=$PATH:/usr/local/go/bin
+                    // fi
+                    go version 
                 '''
             }
         }
