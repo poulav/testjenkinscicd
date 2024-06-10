@@ -4,7 +4,6 @@ pipeline {
     environment {
         GO_VERSION = '1.20'
         GO_BINARY = 'hostname-app'
-        PATH+EXTRA = '/opt/homebrew/go/bin'
     }
 
     stages {
@@ -17,11 +16,14 @@ pipeline {
 
         stage('Set Up Go') {
             steps {
+                dir('/Users/poulav/Documents/') {
                 // Install the specified Go version
                 sh '''
+                pwd
                 which go  
                     //go version 
                 '''
+                }
             }
         }
 
