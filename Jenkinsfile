@@ -16,14 +16,11 @@ pipeline {
 
         stage('Set Up Go') {
             steps {
-                dir('/Users/poulav/Documents/') {
                 // Install the specified Go version
                 sh '''
-                pwd
-                which go  
+                pwd  
                     //go version 
                 '''
-                }
             }
         }
 
