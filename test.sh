@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 go_ver = 'go version'
 
