@@ -22,5 +22,34 @@ pipeline {
                sh 'go version'
             }
         }
+        stage('Initialize') {
+            steps {
+                // Initialize the Go module
+                sh 'go mod init poulav.dev/hostname || true' // This command might fail if go.mod already exists, hence the || true
+                sh 'go mod tidy'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the Go program
+                sh 'go build -o ${GO_BINARY}'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run the Go tests
+                sh 'go test ./...'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                // Run the built Go program
+                sh './${GO_BINARY}'
+                sleep  1
+            }
+        }
     }        
 }
