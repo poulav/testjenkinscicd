@@ -16,11 +16,7 @@ pipeline {
 
         stage('Set Up Go') {
             steps {
-                // Install the specified Go version
-                sh '''
-                pwd  
-                    //go version 
-                '''
+               sh 'test.sh'
             }
         }
 
