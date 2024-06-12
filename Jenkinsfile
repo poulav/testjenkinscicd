@@ -48,6 +48,7 @@ pipeline {
             steps {
                 // Run the built Go program
                 sh '''set -x
+                netstat -vanp tcp | grep 8000
                 ./${GO_BINARY}
                 sleep 1
                 echo $! > .pidfile
