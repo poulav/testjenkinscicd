@@ -18,7 +18,7 @@ func main() {
 		})
 		fmt.Println("Starting api server...")
 		err := http.ListenAndServe(":9000", nil)
-
+		fmt.Println("Started api server on http://localhost:9000")
 		if err != nil {
 			fmt.Printf("Error starting server: %v\n", err)
 			os.Exit(1)
