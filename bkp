@@ -1,4 +1,4 @@
-stage('Initialize') {
+        stage('Initialize') {
             steps {
                 // Initialize the Go module
                 sh 'go mod init poulav.dev/hostname || true' // This command might fail if go.mod already exists, hence the || true
@@ -24,6 +24,7 @@ stage('Initialize') {
             steps {
                 // Run the built Go program
                 sh './${GO_BINARY}'
+                sleep(secs)
             }
         }
     }
@@ -34,3 +35,37 @@ stage('Initialize') {
             cleanWs()
         }
     }
+
+
+
+    sh '''
+                echo 'Now...'
+                echo 'Visit http://localhost:9090 to see your Go application in action.'
+                '''
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+
+
+
+
+
+                script {
+                    // Capture the output of the ps command
+                    def processes = sh(returnStdout: true, script: 'ps -ef')
+                    // Print the process listing to the console
+                    echo "** Running Processes on Agent **"
+                    echo processes
+                }
+                // Run the built Go program
+                sh '''set -x
+                ./${GO_BINARY}
+                sleep 1
+                echo $! > .pidfile
+                set +x
+                echo 'Now...'
+                echo 'Visit http://localhost:8000'
+                ''' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh '''
+                set -x
+                kill $(cat .pidfile)
+                '''

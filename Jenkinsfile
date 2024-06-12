@@ -46,7 +46,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'ps -ef'
+                sh 'lsof -n -i'
                 sh './${GO_BINARY}'                
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
