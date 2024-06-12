@@ -53,7 +53,7 @@ pipeline {
                 echo $! > .pidfile
                 set +x
                 echo 'Now...'
-                echo 'Visit http://localhost:9000'
+                echo 'Visit http://localhost:8000'
                 ''' 
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh '''
