@@ -18,5 +18,6 @@ pipeline {
             steps {
                sh './test.sh'
             }
-        }        
+        }
+    }        
 }
