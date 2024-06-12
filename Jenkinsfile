@@ -18,7 +18,7 @@ pipeline {
 
         stage('Set Up Go') {
             steps {
-               sh "chmod +x -R ${env.WORKSPACE}"
+            //    sh "chmod +x -R ${env.WORKSPACE}"
                sh 'go version'
             }
         }
@@ -48,16 +48,14 @@ pipeline {
             steps {
                 // Run the built Go program
                 sh './${GO_BINARY}'
-                sh '''
-                echo $! > .pidfile
-                sleep  1                
-                '''
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh '''
-                set -x
-                kill $(cat .pidfile)    
-                '''
             }
         }
-    }        
+    }     
+
+    post {
+        always {
+            // Clean up workspace after build
+            cleanWs()
+        }
+    }   
 }
