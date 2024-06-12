@@ -48,7 +48,15 @@ pipeline {
             steps {
                 // Run the built Go program
                 sh './${GO_BINARY}'
-                sleep  1
+                sh '''
+                echo $! > .pidfile
+                sleep  1                
+                '''
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh '''
+                set -x
+                kill $(cat .pidfile)    
+                '''
             }
         }
     }        
