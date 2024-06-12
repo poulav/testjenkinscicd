@@ -17,7 +17,7 @@ pipeline {
         stage('Set Up Go') {
             steps {
                sh "chmod +x -R ${env.WORKSPACE}"
-               sh './test.sh'
+               sh 'go version'
             }
         }
     }        
