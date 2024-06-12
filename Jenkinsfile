@@ -46,8 +46,8 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh './${GO_BINARY}'
                 sh 'ps -ef'
+                sh './${GO_BINARY}'                
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
