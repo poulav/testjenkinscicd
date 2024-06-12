@@ -16,6 +16,12 @@ func main() {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "Hello, World! from %s", hostname)
 		})
-		http.ListenAndServe(":9090", nil)
+		fmt.Println("Starting api server...")
+		err := http.ListenAndServe(":9000", nil)
+
+		if err != nil {
+			fmt.Printf("Error starting server: %v\n", err)
+			os.Exit(1)
+		}
 	}
 }
