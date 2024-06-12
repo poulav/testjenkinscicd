@@ -47,8 +47,19 @@ pipeline {
         stage('Run') {
             steps {
                 // Run the built Go program
-                sh './${GO_BINARY}'
-                sh 'ps'
+                sh '''set -x
+                ./${GO_BINARY}
+                sleep 1
+                echo $! > .pidfile
+                set +x
+                echo 'Now...'
+                echo 'Visit http://localhost:9000'
+                ''' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh '''
+                set -x
+                kill $(cat .pidfile)
+                '''
             }
         }
     }     
