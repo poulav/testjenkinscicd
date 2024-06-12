@@ -46,9 +46,15 @@ pipeline {
 
         stage('Run') {
             steps {
+                script {
+                    // Capture the output of the ps command
+                    def processes = sh(returnStdout: true, script: 'ps -ef')
+                    // Print the process listing to the console
+                    echo "** Running Processes on Agent **"
+                    echo processes
+                }
                 // Run the built Go program
                 sh '''set -x
-                netstat -vanp tcp | grep 8000
                 ./${GO_BINARY}
                 sleep 1
                 echo $! > .pidfile
