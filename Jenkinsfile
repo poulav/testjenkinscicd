@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     // Capture the output of the ps command
-                    def processes = sh(returnStdout: true, script: 'ps -ef')
+                    def processes = sh(returnStdout: true, script: 'netstat -vanp tcp')
                     // Print the process listing to the console
                     echo "** Running Processes on Agent **"
                     echo processes
