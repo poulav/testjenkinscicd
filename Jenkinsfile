@@ -1,8 +1,10 @@
 pipeline {
     agent any
+    tools {
+        go 'golang'
+    }
 
     environment {
-        GO_VERSION = '1.20'
         GO_BINARY = 'hostname-app'
     }
 
