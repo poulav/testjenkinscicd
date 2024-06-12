@@ -48,6 +48,12 @@ pipeline {
             steps {
                 // Run the built Go program
                 sh './${GO_BINARY}'
+                sh 'ps'
+                sh '''
+                echo 'Now...'
+                echo 'Visit http://localhost:9090 to see your Go application in action.'
+                '''
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
     }     
